@@ -38,8 +38,8 @@ $( function() {
         );
 
         console.log($('#output').html());
-        //var message = $('#output').html();
-        //Shiny.onInputChange(reviewed,message);
+        var message = $('#output').html();
+        Shiny.onInputChange('reviewed',message);
         //Shiny.setInputValue(reviewed, $('#output').html());
         // var parts = [];
         // parts.push(encodeURI($('#output').html())) ;
@@ -77,7 +77,7 @@ $( function() {
                            return index === i - 1 && this.nodeType === 3;
                        }
                    ).replaceWith(function() {
-                       var text = $(this).text()
+                       var text = $(this).text();
                        text = text.replace(/\s?$/,'');
                        return text  ;
                    }).end();
@@ -96,4 +96,4 @@ $( function() {
 
 
 
-  };
+  }
