@@ -1,0 +1,5 @@
+Set-Alias "pandoc"  "C:/Program Files/RStudio/bin/pandoc/pandoc.exe"
+
+pandoc -f markdown -t docx test.md --track-changes=all -o test.docx
+
+pandoc -f docx -t html -s --metadata=title:test test.docx --track-changes=all -o test.html

@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>test</title>
+  <style type="text/css">
+      code{white-space: pre;}
+      span.insertion{color: green;border-bottom:1px dotted green; }
+      span.deletion{color: red;border-bottom:1px dotted red;}
+      /* span.insertion.accepted{color:currentColor;}
+      span.insertion.rejected{color:currentColor;
+                              visibility: hidden;} */
+      </style>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/jquery-ui.structure.css">
+  <link rel="stylesheet" href="css/jquery-ui.theme.css">
+</head>
+<body>
+<div id="dialog-decide" title="Accept the change?">
+    <p>
+      <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+      Do you want to accept or reject this change
+    </p>
+  </div>
+<script src="scripts/jquery-3.3.1.js"></script>
+<script src="scripts/jquery-ui.js"></script>
+<script src="scripts/reviewer.js"></script>
+<button id="complete">review complete</button>
+<div id="output"></div>
+<p>This is a test <span class="insertion" author="Adam Gruer" date="2018-06-25T09:32:00Z">document</span> <span class="deletion" author="Adam Gruer" date="2018-06-25T09:32:00Z">deleted</span>.</p>
+</body>
+</html>
