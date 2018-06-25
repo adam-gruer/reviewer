@@ -14,7 +14,7 @@ mypackageDependencies <- function() {
     )
 }
 
-reviewer <- function() {
+reviewer <- function(wordDoc = NULL ) {
 
     ui <- miniUI::miniPage(
         mypackageDependencies(),
@@ -27,8 +27,8 @@ reviewer <- function() {
         miniUI::gadgetTitleBar("Accept or reject changes"),
         miniUI::miniContentPanel(
 
-            shiny::includeHTML("template.html"),
-            reviewed <- NULL
+            shiny::includeHTML("template.html")
+
 
 
         )
@@ -38,14 +38,18 @@ reviewer <- function() {
 
 
 
+        shiny::observeEvent(input$reviewed,{
+        })
 
         # Handle the Done button being pressed.
 
         shiny::observeEvent(input$done, {
 
-            shiny::stopApp()
+            shiny::stopApp(input$reviewed)
         })
+
     }
 
-    shiny::runGadget(ui, server, viewer = shiny::browserViewer())
+    shiny::runGadget(ui, server, viewer = shiny::dialogViewer("review changes"))
+
 }
