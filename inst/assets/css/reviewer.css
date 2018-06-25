@@ -1,0 +1,8 @@
+.insertion{
+  color: green;
+  border-bottom:1px dotted green;
+  }
+.deletion{
+  color: red;
+  border-bottom:1px dotted red;
+}
