@@ -1,5 +1,4 @@
 $( function() {
-   // var decision;
 
     $("#dialog-decide").dialog({
       resizable: false,
@@ -9,21 +8,15 @@ $( function() {
       autoOpen: false,
       buttons: {
         "Accept": function() {
-          // span_text = $(this).data('span').text();
-           //$(this).data('span').replaceWith(span_text);
            replace_span($(this).data('span'), 'accept');
-           $( this ).dialog( "close" );
+           $(this).dialog( "close" );
         },
         "Reject": function() {
-            //span_text = $(this).data('span').text();
-            //$(this).data('span').replaceWith("");
             replace_span($(this).data('span'), 'reject');
             $(this).dialog( "close" );
          },
         Cancel: function() {
-            //decision = null;
-            //console.log(decision);
-          $( this ).dialog( "close" );
+          $(this).dialog( "close" );
         }
       }
     });
@@ -31,12 +24,12 @@ $( function() {
     $("span.insertion, span.deletion").on("click", function (eventObject) {
         // this is the span that was clicked
         $("#dialog-decide").data('span', $(this)).dialog("open");
-        
+
     } );
 
     $( "#complete" ).on("click", function(eventObject) {
-        $("#output").append(  
-                        $('body')
+        $("#output").append(
+                        $('.gadget-absfill')
                         .children()
                         .not('.ui-dialog')
                         .not('script')
@@ -45,19 +38,22 @@ $( function() {
         );
 
         console.log($('#output').html());
-        var parts = [];
-        parts.push(encodeURI($('#output').html())) ;
-        console.log(parts[0]);
+        //var message = $('#output').html();
+        //Shiny.onInputChange(reviewed,message);
+        //Shiny.setInputValue(reviewed, $('#output').html());
+        // var parts = [];
+        // parts.push(encodeURI($('#output').html())) ;
+        // console.log(parts[0]);
 
-          var blob = new Blob(parts, {"type" : "text/html"});
+        //   var blob = new Blob(parts, {"type" : "text/html"});
 
-          var blobURL = URL.createObjectURL(blob);
+        //   var blobURL = URL.createObjectURL(blob);
 
-          var link = document.createElement("a"); // Or maybe get it from the current document
-          link.href = blobURL;
-          link.download = "aDefaultFileName.txt";
-         link.innerHTML = "Click here to download the file";
-          document.body.appendChild(link); // Or append it whereever you want
+        //   var link = document.createElement("a"); // Or maybe get it from the current document
+        //   link.href = blobURL;
+        //   link.download = "aDefaultFileName.txt";
+        //  link.innerHTML = "Click here to download the file";
+        //   document.body.appendChild(link); // Or append it whereever you want
 
 
 
@@ -67,7 +63,7 @@ $( function() {
   } );
 
   function replace_span(span,decision) {
-     
+
       if ((span.hasClass('insertion') && decision == 'reject') ||
       (span.hasClass('deletion') && decision == 'accept') ) {
 
@@ -89,15 +85,15 @@ $( function() {
                 }
                  span.remove();
           } else {
-            
+
             span.replaceWith(function(){
                 return  $(this).text();
             });
-              
+
           }
-          
-   
-          
-      
-      
+
+
+
+
+
   };

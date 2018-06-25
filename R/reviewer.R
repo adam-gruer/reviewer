@@ -31,8 +31,8 @@ reviewer <- function() {
         gadgetTitleBar("Accept or reject changes"),
         miniContentPanel(
 
-            includeHTML("template.html")
-
+            includeHTML("template.html"),
+            reviewed <- NULL
 
 
         )
@@ -42,7 +42,9 @@ reviewer <- function() {
 
 
 
+
         # Handle the Done button being pressed.
+
         observeEvent(input$done, {
 
             stopApp()
