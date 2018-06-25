@@ -1,7 +1,3 @@
-library(shiny)
-library(miniUI)
-library(ggplot2)
-
 
 mypackageDependencies <- function() {
             htmltools::htmlDependency(name = "mypackage-assets", version = "0.1",
@@ -20,7 +16,7 @@ mypackageDependencies <- function() {
 
 reviewer <- function() {
 
-    ui <- miniPage(
+    ui <- miniUI::miniPage(
         mypackageDependencies(),
         # tags$head(tags$link(rel="stylesheet", href="jquery-ui.css")),
         # tags$head(tags$link(rel="stylesheet", href="jquery-ui.structure.css")),
@@ -28,10 +24,10 @@ reviewer <- function() {
         # tags$head(tags$script(src="jquery-3.3.1.js")),
         # tags$head(tags$script(src="jquery-ui.js")),
         # tags$head(tags$script(src="reviewer.js")),
-        gadgetTitleBar("Accept or reject changes"),
-        miniContentPanel(
+        miniUI::gadgetTitleBar("Accept or reject changes"),
+        miniUI::miniContentPanel(
 
-            includeHTML("template.html"),
+            shiny::includeHTML("template.html"),
             reviewed <- NULL
 
 
@@ -45,11 +41,11 @@ reviewer <- function() {
 
         # Handle the Done button being pressed.
 
-        observeEvent(input$done, {
+        shiny::observeEvent(input$done, {
 
-            stopApp()
+            shiny::stopApp()
         })
     }
 
-    runGadget(ui, server)
+    shiny::runGadget(ui, server, viewer = shiny::browserViewer())
 }
