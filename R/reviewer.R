@@ -25,13 +25,13 @@ mypackageDependencies <- function() {
 #' Launch addin to review changes
 #' Launches and addin to review, accept or rect changes in a
 #' Microsoft Word .docx file and then convert the reult to a markdown file
-#' @param wordDoc character path to Word .docx file
+#' @param viewer type of viewer to open
 #'
 #' @return character path to markdown file
 #' @export
 #'
 #' @examples reviewer()
-reviewer <- function(wordDoc = NULL ) {
+reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
 
 
     template <- system.file("extdata", "template.html", package = "reviewer")
@@ -63,7 +63,8 @@ reviewer <- function(wordDoc = NULL ) {
         miniUI::miniContentPanel(
 
 
-            shiny::includeHTML(template)
+            shiny::includeHTML(template),
+            shiny::tags$div(id="placeholder")
 
 
 
@@ -73,8 +74,11 @@ reviewer <- function(wordDoc = NULL ) {
     server <- function(input, output, session) {
 
       shiny::observeEvent(input$docx,{
-        pandoc(input$docx$datapath)
-       # print(input$docx)
+        doc <- pandoc(input$docx$datapath,"docx","html")
+        shiny::insertUI(
+          selector = '#placeholder',
+          ui =  shiny::HTML( doc)
+        )
       })
 
       shiny::observeEvent(input$complete,{
@@ -96,8 +100,8 @@ reviewer <- function(wordDoc = NULL ) {
 
     }
 
-    shiny::runGadget(ui, server, viewer = shiny::dialogViewer("review changes"))
 
+    shiny::runGadget(ui, server, viewer = viewer)
 }
 
 

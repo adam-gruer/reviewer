@@ -6,10 +6,10 @@
 Launches and addin to review, accept or rect changes in a
 Microsoft Word .docx file and then convert the reult to a markdown file}
 \usage{
-reviewer(wordDoc = NULL)
+reviewer(viewer = shiny::dialogViewer("review changes"))
 }
 \arguments{
-\item{wordDoc}{character path to Word .docx file}
+\item{viewer}{type of viewer to open}
 }
 \value{
 character path to markdown file
