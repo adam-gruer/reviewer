@@ -3,6 +3,8 @@
 reviewer
 ========
 
+![reviewer hex sticker](inst/figures/reviewer.png "Package hex sticker")
+
 The goal of reviewer is to provide an RStudio addin that will allow a user to review the track-changes elements in a Microsoft Word .docx file and then convert thereviewed document to markdown. The addin uses Pandoc, which must be installed.
 
 Installation
