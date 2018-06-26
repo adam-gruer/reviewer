@@ -1,6 +1,6 @@
 imgurl <- "inst/figures/review.png"
 hexSticker::sticker(imgurl, package="reviewer",
-                    p_size= 20,
+                    p_size= 8, # 20 on windows??
                     p_color = "#f4b47e", #privacy badger orange
                     s_x=1,
                     s_y=.85,
