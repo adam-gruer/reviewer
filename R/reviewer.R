@@ -43,12 +43,6 @@ reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
 
     ui <- miniUI::miniPage(
         mypackageDependencies(),
-        # tags$head(tags$link(rel="stylesheet", href="jquery-ui.css")),
-      # tags$head(tags$link(rel="stylesheet", href="jquery-ui.structure.css")),
-        # tags$head(tags$link(rel="stylesheet", href="jquery-ui.theme.css")),
-        # tags$head(tags$script(src="jquery-3.3.1.js")),
-        # tags$head(tags$script(src="jquery-ui.js")),
-        # tags$head(tags$script(src="reviewer.js")),
         miniUI::gadgetTitleBar("Accept or reject changes"),
 
         miniUI::miniButtonBlock(
