@@ -108,14 +108,15 @@ reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
 
 #' Call pandoc
 #'
-#' @param input length one character vector  path to input file
+#' @param file length one character vector  path to input file
 #' @param from length one character vector format to convert from
 #' @param to length one character vector format to convert to
+#' @param input character vector to be pased as stdin to pandoc
 #'
 #' @return length one character vector of converted document
 
 #' @keywords  internal
-pandoc <-  function(input, from, to) {
+pandoc <-  function(file = NULL, from, to, input = NULL) {
 
   pandoc_dir <- Sys.getenv("RSTUDIO_PANDOC")
 
@@ -132,10 +133,10 @@ pandoc <-  function(input, from, to) {
                }
     }
 
-  args <- c(from, to , input, track)
+  args <- c(from, to , file, track)
   cmd <-  paste(c(pandoc,args) , collapse =' ')
 
   message('executing ', cmd)
-  system2(pandoc, args, stdout = TRUE)
+  system2(pandoc, args, stdout = TRUE, input = input )
 
 }
