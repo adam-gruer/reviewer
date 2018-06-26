@@ -2,7 +2,7 @@ Package: reviewer
 Version: 0.0.0.9000
 Title: review tracked changes from Word and convert to markdown
 Description: RStudio addin that uses Pandoc to to give the user the ability to accept
-or reject tracked changes from a Word document (.docx) before converting to a markdown file.
+    or reject tracked changes from a Word document (.docx) before converting to a markdown file.
 Authors@R: person("Adam", "Gruer", email = "adamgruert@icloud.com", role = c("aut", "cre"))
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -12,3 +12,4 @@ Imports:
     shiny,
     htmltools,
     miniUI
+RoxygenNote: 6.0.1
