@@ -47,12 +47,11 @@ reviewer <- function(wordDoc = NULL ) {
         miniUI::gadgetTitleBar("Accept or reject changes"),
 
         miniUI::miniButtonBlock(
-          shiny::fileInput("docx", "Choose .docx File",
+          shiny::fileInput("docx", label = NULL, placeholder =  "Choose .docx to review",
                            accept = c(
                              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                              ".docx")
           ),
-          #shiny::actionButton("open_word", "Open .docx file"),
           # shiny::actionButton("next", "Next change"),
           # shiny::actionButton("previous", "Previous change"),
           # shiny::actionButton("accept_all", "Accept all changes"),
@@ -74,6 +73,7 @@ reviewer <- function(wordDoc = NULL ) {
     server <- function(input, output, session) {
 
       shiny::observeEvent(input$docx,{
+        pandoc(input$docx$datapath)
        # print(input$docx)
       })
 
@@ -101,4 +101,22 @@ reviewer <- function(wordDoc = NULL ) {
 }
 
 
-#pandoc <-
+pandoc <-  function(input) {
+
+  pandoc_dir <- Sys.getenv("RSTUDIO_PANDOC")
+
+    if (pandoc_dir == '') {
+             if (Sys.which('pandoc') == '') {stop('Please install pandoc first: http://pandoc.org')}
+    }
+  input <- "inst/extdata/test.docx"
+  #pandoc_dir <- '%ProgramFiles%/Rstudio/bin/pandoc'
+  pandoc_exe <-  file.path(pandoc_dir, "pandoc")
+
+
+    cmd = paste(pandoc_exe,'-f docx -t html' , input,'--track-changes=all')
+
+    message('executing ', cmd)
+   # system(shQuote(cmd), intern = TRUE)
+ system2(cmd, stdout = TRUE)
+
+}
