@@ -21,7 +21,9 @@ $( function() {
       }
     });
 
-    $("span.insertion, span.deletion").on("click", function (eventObject) {
+    $("#placeholder")
+         .on("click", "span.insertion, span.deletion",
+             function (eventObject) {
         // this is the span that was clicked
         $("#dialog-decide").data('span', $(this)).dialog("open");
 
@@ -31,7 +33,7 @@ $( function() {
   function(message) {
     //alert(JSON.stringify(message));
      $("#output").append(
-                        $('.gadget-absfill')
+                        $('#placeholder')
                         .children()
                         .not('.ui-dialog')
                         .not('script')
