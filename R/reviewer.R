@@ -101,22 +101,37 @@ reviewer <- function(wordDoc = NULL ) {
 }
 
 
-pandoc <-  function(input) {
+#' Call pandoc
+#'
+#' @param input length one character vector  path to input file
+#' @param from length one character vector format to convert from
+#' @param to length one character vector format to convert to
+#'
+#' @return length one character vector of converted document
+
+#' @keywords  internal
+#' @examples pandoc("test.docx","docx", "html")
+pandoc <-  function(input, from, to) {
 
   pandoc_dir <- Sys.getenv("RSTUDIO_PANDOC")
 
-    if (pandoc_dir == '') {
-             if (Sys.which('pandoc') == '') {stop('Please install pandoc first: http://pandoc.org')}
-    }
-  input <- "inst/extdata/test.docx"
+  from <- c('-f', from)
+  to <- c('-t', to)
+  track <- c('--track-changes=all')
   #pandoc_dir <- '%ProgramFiles%/Rstudio/bin/pandoc'
-  pandoc_exe <-  file.path(pandoc_dir, "pandoc")
+  pandoc <-  file.path(pandoc_dir, 'pandoc')
 
+    if (pandoc_dir == '') {
+            pandoc_dir <- Sys.which('pandoc')
+             if (pandoc_dir == '') {
+               stop('Please install pandoc first: http://pandoc.org')
+               }
+    }
 
-    cmd = paste(pandoc_exe,'-f docx -t html' , input,'--track-changes=all')
+  args <- c(from, to , input, track)
+  cmd = paste(c(pandoc,args) , collapse =' ')
 
-    message('executing ', cmd)
-   # system(shQuote(cmd), intern = TRUE)
- system2(cmd, stdout = TRUE)
+  message('executing ', cmd)
+  system2(pandoc, args, stdout = TRUE)
 
 }
