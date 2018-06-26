@@ -30,21 +30,20 @@ $( function() {
     } );
 
      Shiny.addCustomMessageHandler("complete",
-  function(message) {
-     $("#output").append(
-                        $('#placeholder')
-                        .children()
-                        .not('.ui-dialog')
-                        .not('script')
-                        //.not('#complete')
-                        .not('#output')
-        );
+                                  function(message) {
+                                     $("#output").append(
+                                                        $('#placeholder')
+                                                        .children()
+                                                        .not('.ui-dialog')
+                                                        .not('script')
+                                                        .not('#output')
+                                                          );
 
-        var html = $('#output').html();
-        console.log(html);
-        Shiny.onInputChange('reviewed',html);
-  }
-);
+                                      var html = $('#output').html();
+
+                                      Shiny.onInputChange('reviewed',html);
+                                     }
+                                  );
 
   } );
 
