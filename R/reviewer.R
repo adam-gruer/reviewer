@@ -45,6 +45,15 @@ reviewer <- function(wordDoc = NULL ) {
         # tags$head(tags$script(src="jquery-ui.js")),
         # tags$head(tags$script(src="reviewer.js")),
         miniUI::gadgetTitleBar("Accept or reject changes"),
+
+        miniUI::miniButtonBlock(
+          shiny::actionButton("next", "Next change"),
+          shiny::actionButton("previous", "Previous change"),
+          shiny::actionButton("accept_all", "Accept all changes"),
+          shiny::actionButton("reject_all", "Reject all changes"),
+          shiny::actionButton("complete", "Generate markdown"),
+          border = "bottom"
+        ),
         miniUI::miniContentPanel(
 
 
