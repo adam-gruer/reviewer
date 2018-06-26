@@ -16,6 +16,9 @@ mypackageDependencies <- function() {
 
 reviewer <- function(wordDoc = NULL ) {
 
+
+    template <- system.file("extdata", "template.html", package = "reviewer")
+
     ui <- miniUI::miniPage(
         mypackageDependencies(),
         # tags$head(tags$link(rel="stylesheet", href="jquery-ui.css")),
@@ -27,7 +30,8 @@ reviewer <- function(wordDoc = NULL ) {
         miniUI::gadgetTitleBar("Accept or reject changes"),
         miniUI::miniContentPanel(
 
-            shiny::includeHTML("template.html")
+
+            shiny::includeHTML(template)
 
 
 
