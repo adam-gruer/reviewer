@@ -19,7 +19,4 @@ length one character vector of converted document
 \description{
 Call pandoc
 }
-\examples{
-pandoc("test.docx","docx", "html")
-}
 \keyword{internal}

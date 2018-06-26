@@ -20,5 +20,7 @@ Launches and addin to review, accept or rect changes in a
 Microsoft Word .docx file and then convert the reult to a markdown file
 }
 \examples{
+\dontrun{
 reviewer()
+}
 }

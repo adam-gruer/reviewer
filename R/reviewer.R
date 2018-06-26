@@ -8,17 +8,19 @@
 #'
 #' @keywords internal
 mypackageDependencies <- function() {
-            htmltools::htmlDependency(name = "mypackage-assets", version = "0.1",
-                   package = "reviewer",
-                   src = "assets",
-                   script = c("scripts/jquery-3.3.1.js",
-                              "scripts/jquery-ui.js",
-                              "scripts/reviewer.js"),
+            htmltools::htmlDependency(
+                                  name = "mypackage-assets",
+                                  version = "0.1",
+                                  package = "reviewer",
+                                  src = "assets",
+                                  script = c("scripts/jquery-3.3.1.js",
+                                              "scripts/jquery-ui.js",
+                                              "scripts/reviewer.js"),
 
-                   stylesheet = c("css/jquery-ui.css",
-                                  "css/jquery-ui.structure.css",
-                                  "css/jquery-ui.theme.css",
-                                  "css/reviewer.css")
+                                  stylesheet = c("css/jquery-ui.css",
+                                                  "css/jquery-ui.structure.css",
+                                                  "css/jquery-ui.theme.css",
+                                                  "css/reviewer.css")
     )
 }
 
@@ -30,7 +32,10 @@ mypackageDependencies <- function() {
 #' @return character path to markdown file
 #' @export
 #'
-#' @examples reviewer()
+#' @examples
+#' \dontrun{
+#' reviewer()
+#' }
 reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
 
 
@@ -39,7 +44,7 @@ reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
     ui <- miniUI::miniPage(
         mypackageDependencies(),
         # tags$head(tags$link(rel="stylesheet", href="jquery-ui.css")),
-        # tags$head(tags$link(rel="stylesheet", href="jquery-ui.structure.css")),
+      # tags$head(tags$link(rel="stylesheet", href="jquery-ui.structure.css")),
         # tags$head(tags$link(rel="stylesheet", href="jquery-ui.theme.css")),
         # tags$head(tags$script(src="jquery-3.3.1.js")),
         # tags$head(tags$script(src="jquery-ui.js")),
@@ -47,9 +52,11 @@ reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
         miniUI::gadgetTitleBar("Accept or reject changes"),
 
         miniUI::miniButtonBlock(
-          shiny::fileInput("docx", label = NULL, placeholder =  "Choose .docx to review",
+          shiny::fileInput("docx",
+                           label = NULL,
+                           placeholder =  "Choose .docx to review",
                            accept = c(
-                             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                              ".docx")
           ),
           # shiny::actionButton("next", "Next change"),
@@ -114,7 +121,6 @@ reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
 #' @return length one character vector of converted document
 
 #' @keywords  internal
-#' @examples pandoc("test.docx","docx", "html")
 pandoc <-  function(input, from, to) {
 
   pandoc_dir <- Sys.getenv("RSTUDIO_PANDOC")
@@ -133,7 +139,7 @@ pandoc <-  function(input, from, to) {
     }
 
   args <- c(from, to , input, track)
-  cmd = paste(c(pandoc,args) , collapse =' ')
+  cmd <-  paste(c(pandoc,args) , collapse =' ')
 
   message('executing ', cmd)
   system2(pandoc, args, stdout = TRUE)
