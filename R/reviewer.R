@@ -1,4 +1,12 @@
 
+#' mypackageDependencies
+#' load Javascript and css assets required
+#'
+#'
+#' @return An object that can be included in a list of dependencies passed to
+#' attachDependencies.
+#'
+#' @keywords internal
 mypackageDependencies <- function() {
             htmltools::htmlDependency(name = "mypackage-assets", version = "0.1",
                    package = "reviewer",
@@ -14,6 +22,15 @@ mypackageDependencies <- function() {
     )
 }
 
+#' Launch addin to review changes
+#' Launches and addin to review, accept or rect changes in a
+#' Microsoft Word .docx file and then convert the reult to a markdown file
+#' @param wordDoc character path to Word .docx file
+#'
+#' @return character path to markdown file
+#' @export
+#'
+#' @examples reviewer()
 reviewer <- function(wordDoc = NULL ) {
 
 
