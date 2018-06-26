@@ -84,17 +84,24 @@ reviewer <- function(viewer = shiny::dialogViewer("review changes")) {
 
       shiny::observeEvent(input$complete,{
          session$sendCustomMessage(type = 'complete' ,
-                                   message = 'generate')
+                                 message = 'generate')
+
+
       })
 
 
 
         shiny::observeEvent(input$reviewed,{
+          markdown <-pandoc(from = "html",
+                            to = "markdown_strict",
+                            input = input$reviewed )
+          message(markdown)
         })
 
         # Handle the Done button being pressed.
 
         shiny::observeEvent(input$done, {
+
 
             shiny::stopApp(input$reviewed)
         })
