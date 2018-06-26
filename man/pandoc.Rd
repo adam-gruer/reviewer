@@ -4,14 +4,16 @@
 \alias{pandoc}
 \title{Call pandoc}
 \usage{
-pandoc(input, from, to)
+pandoc(file = NULL, from, to, input = NULL)
 }
 \arguments{
-\item{input}{length one character vector  path to input file}
+\item{file}{length one character vector  path to input file}
 
 \item{from}{length one character vector format to convert from}
 
 \item{to}{length one character vector format to convert to}
+
+\item{input}{character vector to be pased as stdin to pandoc}
 }
 \value{
 length one character vector of converted document
