@@ -27,19 +27,38 @@ $( function() {
 
     } );
 
-    $( "#complete" ).on("click", function(eventObject) {
-        $("#output").append(
+     Shiny.addCustomMessageHandler("complete",
+  function(message) {
+    //alert(JSON.stringify(message));
+     $("#output").append(
                         $('.gadget-absfill')
                         .children()
                         .not('.ui-dialog')
                         .not('script')
-                        .not('#complete')
+                        //.not('#complete')
                         .not('#output')
         );
 
-        console.log($('#output').html());
-        var message = $('#output').html();
-        Shiny.onInputChange('reviewed',message);
+        var html = $('#output').html();
+        console.log(html);
+        Shiny.onInputChange('reviewed',html);
+  }
+);
+
+
+   // $( "#complete" ).on("click", function(eventObject) {
+     //   $("#output").append(
+     //                   $('.gadget-absfill')
+     //                   .children()
+      //                  .not('.ui-dialog')
+      //                  .not('script')
+      //                  .not('#complete')
+      //                  .not('#output')
+      //  );
+
+      //  console.log($('#output').html());
+      //  var message = $('#output').html();
+      //  Shiny.onInputChange('reviewed',message);
         //Shiny.setInputValue(reviewed, $('#output').html());
         // var parts = [];
         // parts.push(encodeURI($('#output').html())) ;
@@ -59,7 +78,7 @@ $( function() {
 
 
 
-      });
+    //  });
   } );
 
   function replace_span(span,decision) {

@@ -47,13 +47,20 @@ reviewer <- function(wordDoc = NULL ) {
         miniUI::gadgetTitleBar("Accept or reject changes"),
 
         miniUI::miniButtonBlock(
-          shiny::actionButton("next", "Next change"),
-          shiny::actionButton("previous", "Previous change"),
-          shiny::actionButton("accept_all", "Accept all changes"),
-          shiny::actionButton("reject_all", "Reject all changes"),
+          shiny::fileInput("docx", "Choose .docx File",
+                           accept = c(
+                             "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                             ".docx")
+          ),
+          #shiny::actionButton("open_word", "Open .docx file"),
+          # shiny::actionButton("next", "Next change"),
+          # shiny::actionButton("previous", "Previous change"),
+          # shiny::actionButton("accept_all", "Accept all changes"),
+          # shiny::actionButton("reject_all", "Reject all changes"),
           shiny::actionButton("complete", "Generate markdown"),
           border = "bottom"
         ),
+
         miniUI::miniContentPanel(
 
 
@@ -65,6 +72,15 @@ reviewer <- function(wordDoc = NULL ) {
     )
 
     server <- function(input, output, session) {
+
+      shiny::observeEvent(input$docx,{
+       # print(input$docx)
+      })
+
+      shiny::observeEvent(input$complete,{
+         session$sendCustomMessage(type = 'complete' ,
+                                   message = 'generate')
+      })
 
 
 
@@ -83,3 +99,6 @@ reviewer <- function(wordDoc = NULL ) {
     shiny::runGadget(ui, server, viewer = shiny::dialogViewer("review changes"))
 
 }
+
+
+#pandoc <-
